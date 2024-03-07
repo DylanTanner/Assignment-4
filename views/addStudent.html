@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/theme.css">
+    <title>WEB700</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Student</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="theme.css"> <!-- Include custom theme styles -->
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,8 +54,31 @@
                 <input class="form-control" name="course" type="text" required>
             </div>
             <div class="form-group">
+                <label>Email:</label>
+                <input class="form-control" name="email" type="email" required>
+            </div>
+            <div class="form-group">
+                <label>Address Street:</label>
+                <input class="form-control" name="addressStreet" type="text" required>
+            </div>
+            <div class="form-group">
+                <label>Address City:</label>
+                <input class="form-control" name="addressCity" type="text" required>
+            </div>
+            <div class="form-group">
+                <label>Address Province:</label>
+                <input class="form-control" name="addressProvince" type="text" required>
+            </div>
+            <div class="form-group">
                 <label>TA:</label>
                 <input class="form-check-input" name="TA" type="checkbox">
+            </div>
+            <div class="form-group">
+                <label>Status:</label>
+                <select class="form-control" name="status" required>
+                    <option value="Full Time">Full Time</option>
+                    <option value="Part Time">Part Time</option>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
