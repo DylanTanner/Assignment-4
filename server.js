@@ -9,18 +9,22 @@
 *
 ********************************************************************************/ 
 
-
 // Required modules
 var express = require("express");
 var app = express();
 var path = require("path");
 var collegeData = require("./modules/collegeData.js");
+var bodyParser = require("body-parser");
 
-// Define the path to the public folder
+// Define the path to the public and views folders
 var publicPath = path.join(__dirname, "public");
+var viewsPath = path.join(__dirname, "views");
 
 // Serve static files from the public directory
 app.use(express.static(publicPath));
+
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Initialize college data
 collegeData.initialize()
@@ -110,17 +114,34 @@ collegeData.initialize()
 
         // GET /htmlDemo
         app.get("/htmlDemo", (req, res) => {
-            res.sendFile(path.join(__dirname, "views", "htmlDemo.html"));
+            res.sendFile(path.join(viewsPath, "htmlDemo.html"));
         });
 
         // GET /about
         app.get("/about", (req, res) => {
-            res.sendFile(path.join(__dirname, "views", "about.html"));
+            res.sendFile(path.join(viewsPath, "about.html"));
         });
 
         // GET /
         app.get("/", (req, res) => {
-            res.sendFile(path.join(__dirname, "views", "home.html"));
+            res.sendFile(path.join(viewsPath, "home.html"));
+        });
+
+        // GET /addStudent
+        app.get("/addStudent", (req, res) => {
+            res.sendFile(path.join(__dirname, "views", "addStudent.html"));
+        });
+
+        // POST /addStudent
+        app.post("/addStudent", (req, res) => {
+            collegeData.addStudent(req.body)
+                .then(() => {
+                    res.redirect("/students");
+                })
+                .catch(err => {
+                    console.error(err);
+                    res.status(500).json({ error: "Internal Server Error" });
+                });
         });
 
         // No matching route
